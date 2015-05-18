@@ -82,13 +82,13 @@
                 android:text="@string/C" />
 
             <Button
-                android:id="@+id/brec"
+                android:id="@+id/bopenb"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
                 android:layout_weight="20"
                 android:onClick="onClick"
-                android:text="@string/rec" />
+                android:text="@string/openb" />
 
         </LinearLayout>
 
@@ -136,13 +136,13 @@
                 android:text="@string/zero" />
 
             <Button
-                android:id="@+id/bsqrt"
+                android:id="@+id/bcloseb"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
                 android:layout_weight="20"
                 android:onClick="onClick"
-                android:text="@string/sqrt" />
+                android:text="@string/closeb" />
 
         </LinearLayout>
 

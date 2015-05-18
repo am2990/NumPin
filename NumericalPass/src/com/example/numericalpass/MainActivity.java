@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
+import net.objecthunter.exp4j.ValidationResult;
 
 
 import java.util.Random;
@@ -34,16 +35,16 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private static final Object[] String = null;
 	Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
-	Button bclr,bdiv,bmul,bmin,bplu,brec,bsqrt,bdot,bmod,bequal;
+	Button bclr,bdiv,bmul,bmin,bplu,bopenb,bcloseb,bdot,bmod,bequal;
 	TextView ans;
 	int num;
-	//int i=0;
+	
 	int n=10;
 	public String str ="";
-	//Intent m;
-	//char[] arr;
-	//char[] arr1;
+	double result1;
 	int k;
+	 boolean checkisvalid = false;
+	 String evaluate;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +68,8 @@ public class MainActivity extends Activity implements OnClickListener{
         bmul=(Button) findViewById(R.id.bmul);
         bmin=(Button) findViewById(R.id.bmin);
         bplu=(Button) findViewById(R.id.bplu);
-        brec=(Button) findViewById(R.id.brec);
-        bsqrt=(Button) findViewById(R.id.bsqrt);
+        bopenb=(Button) findViewById(R.id.bopenb);
+        bcloseb=(Button) findViewById(R.id.bcloseb);
         bdot=(Button) findViewById(R.id.bdot);
         bmod=(Button) findViewById(R.id.bmod);
         bequal=(Button) findViewById(R.id.bequal);
@@ -161,9 +162,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		if(view == bdot){
 			 ans.setText(ans.getText()+".");
 		}
+		if(view == bopenb){
+			 ans.setText(ans.getText()+"(");
+		}
+		if(view == bcloseb){
+			 ans.setText(ans.getText()+")");
+		}
 		if(view == bclr){
 			 ans.setText("");
 		}
+		
 		if(view == bequal){
 			
 			str = ans.getText().toString();
@@ -177,6 +185,7 @@ public class MainActivity extends Activity implements OnClickListener{
      	  int j = 0;
      	  char[] arraystring= new char[len];   //array for the complete string
      	  char[] arrayvariables= new char[len/2+1];
+     	 char[] temp= new char[len/2+1];
      	  
      	 
      	  for(i=0;i<=len-1;i++){
@@ -188,90 +197,87 @@ public class MainActivity extends Activity implements OnClickListener{
      		 System.out.println(arraystring[i]);
      		
      		
-   
-     		 //boolean check = false;
-     		 
-     		// for(j=0;j<=len/2-1;j++)
-     		  //{
+     		Random r = new Random();
+    		 int maximum = 57;
+    		 int minimum = 49;
+    		int range = maximum - minimum + 1;
+          	num = r.nextInt(range)+minimum;
+
      			 System.out.println("inside loop");
      			 
      			if(arraystring[i]=='a' || arraystring[i]=='b' || arraystring[i]=='c' ||arraystring[i]=='d'||arraystring[i]=='e'||arraystring[i]=='f'||arraystring[i]=='g'||arraystring[i]=='h'||arraystring[i]=='i'||arraystring[i]=='j')
      		 {	 
-//     				if(count(arr[i]) > 1)
+     				
      				  if(j>=0){
-     			//check = true;	  
+     			
      					 arrayvariables[j]=arraystring[i];
+     					temp[j]=arrayvariables[j];
+     					temp[j]=(char)(num);
           		 System.out.println("after array");
           		System.out.println(arrayvariables[j]);
+          		System.out.println(temp[j]);
           		j++;
      				  }
-          		//if(check == true)
-          			//break;
-          		//break;
-          		//
           		
-          	/*	Intent m = new Intent();
-                  m.setClass(MainActivity.this, RegistrationActivity.class);
-                  m.putExtra("p",arr1[i]);
-                              startActivity(m);*/
           	}
      			 	
-//     			Intent m = new Intent();
-//                m.setClass(MainActivity.this, RegistrationActivity.class);
-//                m.putExtra("p",arr1);
-//                            startActivity(m);
-     			// Log.i("array1", arr1);
-          	
-          	
-          	//}
+
      		 if(arraystring[i]=='a' || arraystring[i]=='b' || arraystring[i]=='c' ||arraystring[i]=='d'||arraystring[i]=='e'||arraystring[i]=='f'||arraystring[i]=='g'||arraystring[i]=='h'||arraystring[i]=='i'||arraystring[i]=='j'){
-     		 Random r = new Random();
-     		 int maximum = 57;
-     		 int minimum = 49;
-     		int range = maximum - minimum + 1;
-           	num = r.nextInt(range)+minimum;
-           
+     		            //	arrayvariables[i]=(char)(num);
            	arraystring[i]=(char)(num);
            	
            	System.out.println(num);
            	System.out.println(arraystring[i]);
      		 }
      		 else
-     			continue;// i++;
+     			continue;
      		 
      
           
           }
-     	  //String arraynew = arr.toString();
-     	  String evaluate = new String(arraystring);  //string to 
-          Log.d("MainActivity", Arrays.toString(arraystring));
-          Log.d("MainActivity", evaluate);
-          Log.d("Mainhere", Arrays.toString(arrayvariables));
+     	 
+     	
+     	  try{
+     	  evaluate = new String(arraystring); 
+     	 Expression calc = new ExpressionBuilder(evaluate).build();
+     	Log.d("MainActivity", Arrays.toString(arraystring));
+        Log.d("MainActivity", evaluate);
+        Log.d("Mainhere", Arrays.toString(arrayvariables));
+     	 result1=calc.evaluate();//string to evaluate
+     	 System.out.println(result1);
+     	// String strans = result1.toString();
+     	 checkisvalid = true;
+     	  }
+     	  
+     	  catch(Exception e){
+     		  
+     		 Toast.makeText(getApplicationContext(),"invalid string", Toast.LENGTH_SHORT).show(); 
+     		 checkisvalid = false;
+     	  } 
+     	 if(checkisvalid == true){
+	          Intent setintent = new Intent();
+	      	  setintent.setClass(MainActivity.this, RegistrationActivity.class);
+	      	 setintent.putExtra("c",str);
+	      	 setintent.putExtra("something", arrayvariables);
+	      	setintent.putExtra("values", temp);
+	      	setintent.putExtra("result", result1);
+	      	// Toast.makeText(getApplicationContext(),result1, Toast.LENGTH_SHORT).show();
+	                       startActivity(setintent);
+	     		 }
+     	/* else{
+     		 Toast.makeText(getApplicationContext(),"hello from invalid string", Toast.LENGTH_SHORT).show(); 
+     	 }*/
+     		     	  
           
-     	   Intent setintent = new Intent();
-     	  setintent.setClass(MainActivity.this, RegistrationActivity.class);
-     	 setintent.putExtra("c",str);
-     	 setintent.putExtra("something", arrayvariables);
-                      startActivity(setintent);
-             //String strin = arr.toString();         
-                      Expression calc = new ExpressionBuilder(evaluate).build();
-      				double result1=calc.evaluate();
-      				System.out.println("hello from expression builder");
-      				System.out.println(result1);
-                      
-                      
-                      
-                     /* result = String(eval('12+3')));
-                      HTLabel.text = result;  */          
-     	   
-                      //i=0;
+          
+      
 		}
 		
 		
 		
 	}
 
-    //};
+   
 
 	
 	

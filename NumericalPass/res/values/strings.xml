@@ -21,13 +21,17 @@
     <string name="mu">*</string>
     <string name="div">/</string>
     <string name="dot">.</string>
-    <string name="C">C</string>
-    <string name="rec">1/X</string>
-    <string name="sqrt">sqrt</string>
+    <string name="C">Clr</string>
+    <string name="openb">(</string>
+    <string name="closeb">)</string>
     <string name="mod">%</string>
     <string name="equal">SET</string>
     <string name="ans"/>
     <string name="tv"/>
     <string name="tv1"/>
+    <string name="tv2"/>
+    <string name="et1"/>
+    <string name="button1"/>
+    
 
 </resources>
