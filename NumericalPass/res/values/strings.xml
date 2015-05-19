@@ -2,10 +2,8 @@
 <resources>
 
     <string name="app_name">NumericalPass</string>
-
     <string name="action_settings">Settings</string>
-     <string name="exit">Exit</string>
-    
+    <string name="exit">Exit</string>
     <string name="one">a</string>
     <string name="two">b</string>
     <string name="tree">c</string>
@@ -26,12 +24,16 @@
     <string name="closeb">)</string>
     <string name="mod">%</string>
     <string name="equal">SET</string>
-    <string name="ans"/>
-    <string name="tv"/>
-    <string name="tv1"/>
-    <string name="tv2"/>
-    <string name="et1"/>
-    <string name="button1"/>
-    
+    <string name="done">Done</string>
+    <string name="ans" />
+    <string name="tv" />
+    <string name="tv1" />
+    <string name="tv2" />
+    <string name="et1" />
+    <string name="button1" />
+    <string name="textview" />
+    <string name="edittext" />
+    <string name="title_activity_reg">RegActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
