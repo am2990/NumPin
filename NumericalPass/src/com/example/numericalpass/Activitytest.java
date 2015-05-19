@@ -5,9 +5,7 @@ import java.util.Random;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
-import net.objecthunter.exp4j.ValidationResult;
+
 
 
 
@@ -35,10 +33,14 @@ public class Activitytest extends Activity{
 	EditText edittext;
 	Button bdone;
 	String str,evaluate;
+	String h= "";
+	String u = "";
+	//String[] l = new String("");
 	double result1;
 	boolean checkisvalid = false;
-	//tr;
-	int num;
+	int result2;
+	int num, lenother;
+	int count = 0;
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,15 +58,28 @@ public class Activitytest extends Activity{
 			
 			
 			str = edittext.getText().toString();
-			int len = str.length();            //length of string (formulae)
-	    	    
+			
+			int len = str.length(); 
+			int g =0;//length of string (formulae)
+			//for(int g=0; g<len;g+=2) {
+			while(g < len)	{
+				if(str.charAt(g) == 'a' || str.charAt(g) == 'b' || str.charAt(g) == 'c' || str.charAt(g) == 'd' || str.charAt(g) == 'e' || str.charAt(g) == 'f' || str.charAt(g) == 'g' || str.charAt(g) == 'h' || str.charAt(g) == 'i' || str.charAt(g) == 'j' || str.charAt(g) == 'k' || str.charAt(g) == 'l' || str.charAt(g) == 'm' || str.charAt(g) == 'n' || str.charAt(g) == 'o' || str.charAt(g) == 'p' || str.charAt(g) == 'q' || str.charAt(g) == 'r' || str.charAt(g) == 's' || str.charAt(g) == 't' || str.charAt(g) == 'u' || str.charAt(g) == 'v' || str.charAt(g) == 'w' || str.charAt(g) == 'x' || str.charAt(g) == 'y' || str.charAt(g) == 'z')
+				{
+					count++;
+					
+				}
+				//g+=2;
+				g++;
+
+			}
+			lenother = count;
 	     	   Toast.makeText(getApplicationContext(),str, Toast.LENGTH_SHORT).show();
 	     	  int i = 0;
 	     	  int j = 0;
 	     	  char[] arraystring= new char[len];   //array for the complete string
-	     	  char[] arrayvariables= new char[len/2+1];
-	     	 char[] temp= new char[len/2+1];
-	     	 
+	     	  char[] arrayvariables= new char[lenother];
+	     	 char[] temp= new char[lenother];
+	     try{
 	     	  for(i=0;i<=len-1;i++){
 	      		 
 	      		 arraystring[i] = str.charAt(i);
@@ -82,7 +97,7 @@ public class Activitytest extends Activity{
 
 	      			 System.out.println("inside loop");
 	      			 
-	      			if(arraystring[i]=='a' || arraystring[i]=='b' || arraystring[i]=='c' ||arraystring[i]=='d'||arraystring[i]=='e'||arraystring[i]=='f'||arraystring[i]=='g'||arraystring[i]=='h'||arraystring[i]=='i'||arraystring[i]=='j')
+	      			if(arraystring[i]=='a' || arraystring[i]=='b' || arraystring[i]=='c' ||arraystring[i]=='d'||arraystring[i]=='e'||arraystring[i]=='f'||arraystring[i]=='g'||arraystring[i]=='h'||arraystring[i]=='i'||arraystring[i]=='j' ||arraystring[i]=='k' ||arraystring[i]=='l' ||arraystring[i]=='m' ||arraystring[i]=='n' ||arraystring[i]=='o' ||arraystring[i]=='p' ||arraystring[i]=='q' ||arraystring[i]=='r' ||arraystring[i]=='s' ||arraystring[i]=='t' ||arraystring[i]=='u' ||arraystring[i]=='v' ||arraystring[i]=='w' ||arraystring[i]=='x' ||arraystring[i]=='y' ||arraystring[i]=='z')
 	      		 {	 
 	      				
 	      				  if(j>=0){
@@ -95,20 +110,78 @@ public class Activitytest extends Activity{
 	           		System.out.println(temp[j]);
 	           		j++;
 	      				  }
+	      				
+	      				
 	           		
 	           	}
 	      			 	
 
-	      		 if(arraystring[i]=='a' || arraystring[i]=='b' || arraystring[i]=='c' ||arraystring[i]=='d'||arraystring[i]=='e'||arraystring[i]=='f'||arraystring[i]=='g'||arraystring[i]=='h'||arraystring[i]=='i'||arraystring[i]=='j'){
+	      			if(arraystring[i]=='a' || arraystring[i]=='b' || arraystring[i]=='c' ||arraystring[i]=='d'||arraystring[i]=='e'||arraystring[i]=='f'||arraystring[i]=='g'||arraystring[i]=='h'||arraystring[i]=='i'||arraystring[i]=='j' ||arraystring[i]=='k' ||arraystring[i]=='l' ||arraystring[i]=='m' ||arraystring[i]=='n' ||arraystring[i]=='o' ||arraystring[i]=='p' ||arraystring[i]=='q' ||arraystring[i]=='r' ||arraystring[i]=='s' ||arraystring[i]=='t' ||arraystring[i]=='u' ||arraystring[i]=='v' ||arraystring[i]=='w' ||arraystring[i]=='x' ||arraystring[i]=='y' ||arraystring[i]=='z'){
 	      		            //	arrayvariables[i]=(char)(num);
 	            	arraystring[i]=(char)(num);
 	            	
 	            	System.out.println(num);
 	            	System.out.println(arraystring[i]);
 	      		 }
+	      		 else if(arraystring[i]=='1')
+	      		 {
+	      			arraystring[i] = '1'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='2')
+	      		 {
+	      			arraystring[i] = '2'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='3')
+	      		 {
+	      			arraystring[i] = '3'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='4')
+	      		 {
+	      			arraystring[i] = '4'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='5')
+	      		 {
+	      			arraystring[i] = '5'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='6')
+	      		 {
+	      			arraystring[i] = '6'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='7')
+	      		 {
+	      			arraystring[i] = '7'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='8')
+	      		 {
+	      			arraystring[i] = '8'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='9')
+	      		 {
+	      			arraystring[i] = '9'; 
+	      			
+	      		 }
+	      		else if(arraystring[i]=='0')
+	      		 {
+	      			arraystring[i] = '0'; 
+	      			
+	      		 }
 	      		 else
 	      			continue;
-	      		 
+	     	  }
+		}
+		catch(Exception e){
+			Toast.makeText(getApplicationContext(),"not allowed", Toast.LENGTH_SHORT).show();
+		}
+	     	  
+	     	  if(i == str.length()){
 	      		try{
 	           	  evaluate = new String(arraystring); 
 	           	 Expression calc = new ExpressionBuilder(evaluate).build();
@@ -116,7 +189,9 @@ public class Activitytest extends Activity{
 	              Log.d("MainActivity", evaluate);
 	              Log.d("Mainhere", Arrays.toString(arrayvariables));
 	           	 result1=calc.evaluate();//string to evaluate
+	           	result2 = (int)result1;
 	           	 System.out.println(result1);
+	           	 System.out.println(result2);
 	           	// String strans = result1.toString();
 	           	 checkisvalid = true;
 	           	  }
@@ -133,13 +208,31 @@ public class Activitytest extends Activity{
 	      	      	 setintent.putExtra("something", arrayvariables);
 	      	      	setintent.putExtra("values", temp);
 	      	      	setintent.putExtra("result", result1);
+	      	      setintent.putExtra("result2", result2);
+	      	   // String[] a = new String[len/2+1];
+	      	  //char[] l = new char[len/2+1];
+	      	      int templen = temp.length;
+	      	      for(int p=0; p<= templen-1; p++){
+	      	    	  u = arrayvariables[p] + "=" + temp[p];
+	      	    	  
+	      	    	// a[p] =  u;
+	      	    	  
+	      	    	System.out.println(u); 
+	      	    	 h = h.concat("\n" + u);
+	      	    	// l = h.split("\n");
+	      	    	 
+	      	    	//System.out.println(a[p]);  
+	      	      }
+	      	    setintent.putExtra("yo", h);
+	      	    
+	      	      
 	      	      	// Toast.makeText(getApplicationContext(),result1, Toast.LENGTH_SHORT).show();
 	      	                       startActivity(setintent);
 	      	     		 }
 	      		 
 	      
+	     	  }
 	           
-	           }
 		
 
         }

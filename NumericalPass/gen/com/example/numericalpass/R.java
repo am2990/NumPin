@@ -1663,7 +1663,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_settings=0x7f09005c;
+        public static final int action_settings=0x7f09005b;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
         public static final int b0=0x7f090049;
@@ -1688,7 +1688,7 @@ containing a value of this type.
         public static final int bmul=0x7f090052;
         public static final int bopenb=0x7f090045;
         public static final int bplu=0x7f090050;
-        public static final int button1=0x7f09005b;
+        public static final int button1=0x7f09005a;
         public static final int checkbox=0x7f090029;
         public static final int collapseActionView=0x7f090015;
         public static final int decor_content_parent=0x7f09002f;
@@ -1699,7 +1699,7 @@ containing a value of this type.
         public static final int edit_query=0x7f090033;
         public static final int edittext=0x7f090055;
         public static final int end=0x7f09001c;
-        public static final int et1=0x7f09005a;
+        public static final int et1=0x7f090059;
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
         public static final int home=0x7f090000;
@@ -1738,7 +1738,6 @@ containing a value of this type.
         public static final int title=0x7f090027;
         public static final int tv=0x7f090057;
         public static final int tv1=0x7f090058;
-        public static final int tv2=0x7f090059;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
         public static final int withText=0x7f090018;
@@ -1867,19 +1866,19 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0011;
         public static final int ans=0x7f0a0028;
         public static final int app_name=0x7f0a0010;
-        public static final int button1=0x7f0a002d;
+        public static final int button1=0x7f0a002e;
         public static final int closeb=0x7f0a0024;
         public static final int div=0x7f0a0020;
         public static final int done=0x7f0a0027;
         public static final int dot=0x7f0a0021;
-        public static final int edittext=0x7f0a002f;
+        public static final int edittext=0x7f0a0030;
         public static final int eight=0x7f0a001a;
         public static final int equal=0x7f0a0026;
-        public static final int et1=0x7f0a002c;
+        public static final int et1=0x7f0a002d;
         public static final int exit=0x7f0a0012;
         public static final int five=0x7f0a0017;
         public static final int four=0x7f0a0016;
-        public static final int hello_world=0x7f0a0031;
+        public static final int hello_world=0x7f0a0032;
         public static final int mi=0x7f0a001e;
         public static final int mod=0x7f0a0025;
         public static final int mu=0x7f0a001f;
@@ -1889,12 +1888,13 @@ containing a value of this type.
         public static final int pl=0x7f0a001d;
         public static final int seven=0x7f0a0019;
         public static final int six=0x7f0a0018;
-        public static final int textview=0x7f0a002e;
-        public static final int title_activity_reg=0x7f0a0030;
+        public static final int textview=0x7f0a002f;
+        public static final int title_activity_reg=0x7f0a0031;
         public static final int tree=0x7f0a0015;
         public static final int tv=0x7f0a0029;
         public static final int tv1=0x7f0a002a;
         public static final int tv2=0x7f0a002b;
+        public static final int tv3=0x7f0a002c;
         public static final int two=0x7f0a0014;
         public static final int zero=0x7f0a001c;
     }
