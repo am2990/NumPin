@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, DroidzActivity!</string>
+    <string name="app_name">droidz</string>
+    <string name="menu_submit">Submit</string>
+     <string name="menu_verify">Verify</string>
+     <string name="menu_confirm">Confirm</string>
+     <string name="str_red">Red</string>
+    <string name="str_green">Green</string>
+    <string name="str_yellow">Yellow</string>
+    <string name="str_blue">Blue</string>
+</resources>
