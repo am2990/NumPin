@@ -100,19 +100,25 @@ public class MainThread extends Thread {
 	}
 
 	public void doSubmit() {
-
+		
 		synchronized (surfaceHolder) {
 
 			//TODO Store the images in db
 			
 			DatabaseHelper db = new DatabaseHelper(mContext);
-			db.saveOrUpdateImage(RegistrationPanel.image);
-			db.saveOrUpdateImage(RegistrationPanel.tri_b);
+			db.clearTableDroid();
+			for(Image img: RegistrationPanel.imglist){
+				db.saveOrUpdateImage(img);
+			}
+			//db.saveOrUpdateImage(RegistrationPanel.tri_b);
 //			//db.createDroid(BitmapFactory.decodeResource(getResources(), R.drawable.triangle_blue),R.drawable.triangle_blue, 50, 50,"tblue", getResources());
 			
 			
 			//Intent intent = new Intent(mContext, LoginActivity.class);
 			Intent intent = new Intent(mContext, TableLayoutExampleActivity.class);
+			System.out.println("r p: "+RegistrationActivity.imageBack);
+			intent.putExtra("ib", RegistrationActivity.imageBack);
+//			intent.putExtra("images", RegistrationPanel.imglist);
 			mContext.startActivity(intent);
 			
 		}

@@ -6,8 +6,10 @@ package edu.iiitd.dynamikpass;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import edu.iiitd.dynamikpass.model.Image;
@@ -38,15 +40,19 @@ public class LoginPanel extends SurfaceView implements OnGestureListener,
 OnDoubleTapListener, SurfaceHolder.Callback {
 
 	
-	private static final String TAG = RegistrationPanel.class.getSimpleName();
+	private static final String TAG = LoginPanel.class.getSimpleName();
 	
 	static MainThread1 thread;
-	static Image image;
+	//static Image image;
 	boolean flag;
 	boolean check;
+	String getgest=null;
 	int countdroidST=0;
 	int countdroidDT=0;
 	boolean colflag;
+	ArrayList<Image> drawimg = new ArrayList<Image>();
+	List<Image> ls = new ArrayList<Image>();
+	List<String> gestures = null;
 	//Droid droidz = null;
 	Image f = null;
 	int o=0;
@@ -61,6 +67,10 @@ OnDoubleTapListener, SurfaceHolder.Callback {
 	static int wx,wy;
 	int reach=0;
 	ArrayList<Image> templist;
+	ArrayList<Image> fling = new ArrayList<Image>();
+	ArrayList<Image> singletap = new ArrayList<Image>();
+	ArrayList<Image> doubletap = new ArrayList<Image>();
+	Map<Image, Integer> hm = new HashMap<Image, Integer>();
 	  private int mCanvasHeight = 1;
 	  private Context mContext;
 	  int fry;
@@ -75,11 +85,7 @@ OnDoubleTapListener, SurfaceHolder.Callback {
       private int mCanvasWidth = 1;
 boolean flag1,flag2,flag3,flag4;
      // private ArrayList<Droid> wrongDroid ;
-      private ArrayList<Image> correctDroid ;
-      private ArrayList<Image> listdroid ;
-	 ArrayList<Double> ax1;
-
-	 ArrayList<Double> ay1;
+     
 	 //ArrayList<Droid> droidobj1;
 	 ArrayList<Integer> bitmapid1;
 	 //ArrayList<Bitmap> bitmap;
@@ -87,99 +93,147 @@ boolean flag1,flag2,flag3,flag4;
 	 private GestureDetectorCompat mDetector; 
 	 private SurfaceView surfaceView;
 	
-	public LoginPanel(Context context) {
+	public LoginPanel(Context context, int backgroundImage) {
 		super(context);
 		mContext = context;
 		
 		
+
+		new BitmapFactory();
+		mBackgroundImage = BitmapFactory.decodeResource(getResources(), backgroundImage);
 		
-		
+		 
 		DatabaseHelper db = new DatabaseHelper(mContext);
-		List<Image> ls = db.getAllDroids();
-		System.out.println("ls: "+ ls.size());
+		ls = db.getAllDroids();
 		
 		
-		/*Double[] arrayx = new Double[ax.size()]; 
-		Double[] arrayy = new Double[ay.size()];
-		//Bitmap[] bm = new Bitmap[BitMap.size()];
-		Integer[] bm_id = new Integer[bitmapid.size()];*/
+		gestures = db.getAllGestures();
+		//System.out.println("ls: "+ ls.size());
+		System.out.println("gestures: "+ gestures.size());
+		
+		
 		
 		
 		// create droid and load bitmap
-		int r = randomN(ls.size()-1);
-		System.out.println("r: "+r);
-		image = new Image(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1),R.drawable.droid_1, 50, 50,"blue", getResources());
-		tri_b = new Image(BitmapFactory.decodeResource(getResources(), R.drawable.triangle_blue),R.drawable.triangle_blue, 100, 100,"blue", getResources());
 		
-		new BitmapFactory();
-		mBackgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.surreal);
+	
+		for(Image i :ls){
+			i = new Image(BitmapFactory.decodeResource(getResources(), i.getBitmapId()),i.getBitmapId(),i.getX(),i.getY(),i.getColor(),getResources());
+			//i.setBitmap(BitmapFactory.decodeResource(getResources(), i.getBitmapId()));
+			//int r = randomN(ls.size());
+		//	System.out.println("r: "+r);
+			int r = 2;
+			switch(r){
+				case 1:
+				{
+					System.out.println("case1:BOTH RIGHT");
+					hm.put(i,1);
+					break;
+				}
+				case 2:
+				{
+					System.out.println("case2:CHANGE COLOR");
+					
+					ChangeColor(i);
+					hm.put(i,2);
+					break;
+				}
+				case 3:
+				{
+					System.out.println("case3:CHANGE POSITION");
+					
+					ChangePosition(i);
+					hm.put(i,3);
+					break;
+				}
+				case 4:
+				{
+					System.out.println("case4:BOTH WRONG");
+					
+					ChangeColor(i);
+					ChangePosition(i);
+					hm.put(i,4);
+					break;
+				}
+			
+			}
+			//i = new Image(BitmapFactory.decodeResource(getResources(), i.getBitmapId()),i.getBitmapId(),i.getX(),i.getY(),i.getColor(),getResources());
+			//i.setBitmap(BitmapFactory.decodeResource(getResources(), i.getBitmapId()));
+			
+			//int vount =0;
+			
+			
 		
-		// create the game loop thread
-		//listdroid= new ArrayList<Image>();
-		//for(i)
-	   // listdroid.add(image);
-	   // listdroid.add(tri_b);
-	   // listdroid.add(droid2);
-	   // listdroid.add(droid3);
-	    //listdroid.add(droid4);
-	//	correctDroid = new ArrayList<Image>(listdroid);
-	   // wrongDroid = new ArrayList<Droid>();
-
-	/*	for(int j =0;j<ax.size();j++){
-			  arrayx[j] = ax.get(j);
+			
+		
+		}
+		Iterator iter = hm.keySet().iterator();
+		 while (iter.hasNext()) {
+				// for(int y=0;y<=3;y++)
+				// vount++;
+				 Image image = (Image) iter.next();
+				 drawimg.add(image);
+				 //i.draw(canvas);
+				 
+			 }
+			
+		//Iterator it = hm.keySet().iterator();
+		 //while (it.hasNext()) {
+		//for(Image i:ls){
+			//String getgest=null;
+			//Log.d(TAG, "Size: " + ls.size());
+			//int j = (int) it.next();
+			
+		//Image i = (Image) it.next();
+		
+		for(Image i: drawimg){
+		int j = hm.get(i);
+			Log.d(TAG, "hm value"+ j);
+			
+			switch(j){
+				case 1:{
+					getgest = gestures.get(0);
+					System.out.println("gestgest: "+getgest);
+					substitutegesture(i);
+					break;
+				}
+				case 2:{
+					getgest = gestures.get(1);
+					System.out.println("gestgest: "+getgest);
+					substitutegesture(i);
+					break;
+				}
+				case 3:{
+					getgest = gestures.get(2);
+					System.out.println("gestgest: "+getgest);
+					substitutegesture(i);
+					break;
+				}
+				case 4:{
+					//getgest = gestures.get(2);
+					break;
+				}
 			}
-		for(int l =0;l<ay.size();l++){
-			  arrayy[l] = ay.get(l);
-			}
-		for(int l =0;l<bitmapid.size();l++){
-			  bm_id[l] = bitmapid.get(l);
-			}*/
+		}
+		
+		
+		//image = new Image(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1),R.drawable.droid_1, 50, 50,"blue", getResources());
+		//tri_b = new Image(BitmapFactory.decodeResource(getResources(), R.drawable.triangle_blue),R.drawable.triangle_blue, 100, 100,"blue", getResources());
+		
+		
 		
 		//int count = ax.size();
 	
 	//int r = randomN(ax.size()-1);
 	
-		/*for(int i=0;i<r;i++){
-			
-			Random ran = new Random();
-			Random rando = new Random();
-			rando.setSeed((long)i);
-			int rr = rando.nextInt(((count) - 0) + 1) + 0;
 		
-			ran.setSeed((long)i);
-			
-		    int randomNumx = ran.nextInt((350 - 25) + 1) + 25;
-		    int randomNumy = ran.nextInt((350 - 25) + 1) + 25;
-		 
-			System.out.println("rr: "+ rr);
-		    arrayx[rr]=(double) randomNumx;
-		    arrayy[rr]=(double) randomNumy;*/
 			
 		    
 		    
 		   
 		    
 
-		 /*   switch(rr){
-
-		    case 0:
-		    	correctDroid.remove(image);
-		    	reach++;
-		    	continue;
-		    case 1:
-		    	correctDroid.remove(tri_b);
-		    	reach++;
-		    	continue;
-		  
-
-		    }  */
-		   
 		 
-		//}
-	
-		/*image.setX(arrayx[0].intValue());//= arrayx[0].intValue();
-		image.setY(arrayy[0].intValue());
-		image.setBitmapId( bm_id[0]);*/
 	
 		
 		// make the GamePanel focusable so it can handle events
@@ -207,6 +261,67 @@ boolean flag1,flag2,flag3,flag4;
 	    });
 		setFocusable(true);
 		
+		
+	}
+
+	private void substitutegesture(Image i) {
+		// TODO Auto-generated method stub
+		if(getgest == "Single Tap"){
+			fling.add(i);
+		}
+		if(getgest == "Double Tap"){
+			doubletap.add(i);
+		}
+		if(getgest == "Fling"){
+			singletap.add(i);
+		}
+		
+	}
+
+	private void ChangePosition(Image img) {
+		Random ran = new Random();
+		//ran.setSeed((long)i);
+		int randomNumx = ran.nextInt((350 - 25) + 1) + 25;
+		int randomNumy = ran.nextInt((350 - 25) + 1) + 25;
+		img.setX(randomNumx);
+		img.setY(randomNumy);
+		
+	}
+	private void ChangeColor(Image img) {
+		// TODO Auto-generated method stub
+		Random rand= new Random();
+		
+		//int col = (rand.nextInt((100-1)+1)%5+1);
+		int col  = 2;
+		Log.d(TAG, "Color" + col);
+		switch(col){
+		case 1:
+		{
+			img.setColor("BLUE");
+			break;
+
+		}
+		case 2:
+		{
+			img.setColor("GREEN");
+			//img.setBitmap(BitmapFactory.decodeResource(getResources(), img.getBitmapId()));
+			break;
+
+		}
+		case 3:
+		{
+			img.setColor("YELLOW");
+			break;
+
+		}
+		case 4:
+		{
+			img.setColor("RED");
+			break;
+
+		}
+
+		}
 		
 	}
 
@@ -341,7 +456,7 @@ boolean flag1,flag2,flag3,flag4;
 
 	    // nextInt is normally exclusive of the top value,
 	    // so add 1 to make it inclusive
-	    int randomNum = rand.nextInt((length - 0) + 1) + 0;
+	    int randomNum = rand.nextInt((length - 1) + 1) + 1;
 	    System.out.println("random no"+ randomNum);
 	    return randomNum;
 
@@ -352,11 +467,20 @@ boolean flag1,flag2,flag3,flag4;
 	protected void onDraw(Canvas canvas) {
 		// fills the canvas with black
 		//canvas.drawColor(Color.BLACK);
-		
+		mBackgroundImage = Bitmap.createScaledBitmap(
+                mBackgroundImage, getWidth(), getHeight(), true);
 		canvas.drawBitmap(mBackgroundImage, 0,0, null);
 		
-		image.draw(canvas);
-		tri_b.draw(canvas);
+		//image.draw(canvas);
+		//tri_b.draw(canvas);
+		
+		//for(Image i: ls){
+		
+		 
+		 for(Image i: drawimg){
+			 i.draw(canvas);
+		 }
+		//}
 		//droid2.draw(canvas);
 		//droid3.draw(canvas);
 		//droid4.draw(canvas);
@@ -385,9 +509,9 @@ boolean flag1,flag2,flag3,flag4;
         public boolean onFling(MotionEvent event1, MotionEvent event2, 
                 float velocityX, float velocityY) {
         	int one =0;
-        	ArrayList<Image> FlingDroid = correctDroid;
+        	ArrayList<Image> FlingDroid = fling;
     		Image droidz = null;
-    		 for( Image f : listdroid){
+    		 for( Image f : fling){
     			 droidz = f.getCircleLine((int)event1.getX(), (int)event1.getY(), (int)event2.getX(), (int)event2.getY());
     			System.out.println("droidz: "+droidz);
     			  System.out.println("droidz Fling: "+ droidz);	
@@ -430,10 +554,10 @@ boolean flag1,flag2,flag3,flag4;
 		colflag = true;
 		int one = 0;
 		
-		ArrayList<Image> SingleDroid = correctDroid;
+		ArrayList<Image> SingleDroid = singletap;
 		Image droidz = null;
 		
-		 for( Image f : listdroid){
+		 for( Image f : singletap){
 			 droidz = f.getRange(arg0.getX(), arg0.getY());
 			 System.out.println("droidz ST: "+ droidz);
 			
@@ -495,10 +619,10 @@ boolean flag1,flag2,flag3,flag4;
 	@Override
 	public boolean onDoubleTap(MotionEvent e) {
 		int one = 0;
-		ArrayList<Image> DoubleDroid = correctDroid;
+		ArrayList<Image> DoubleDroid = doubletap;
 		Image droidz = null;
 		// f = listdroid.get(l);
-		 for( Image f : listdroid){
+		 for( Image f : doubletap){
 			 droidz = f.getRange(e.getX(), e.getY());
 			 System.out.println("droidz DT: "+ droidz);
 			 //templist.add(droidz);

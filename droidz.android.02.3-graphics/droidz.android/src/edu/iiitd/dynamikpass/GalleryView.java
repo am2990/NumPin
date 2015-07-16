@@ -158,7 +158,7 @@ public class GalleryView extends Activity {
             //	System.out.println("imageView:"+pic arg0]);
                 //doSubmit();
             	System.out.println("ib: "+selectedImage);
-         	Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+         	Intent intent = new Intent(getApplicationContext(), MainActivity.class);
     			intent.putExtra("ib", selectedImage);
     		/*	intent.putExtra("ay", ay);
     			//intent.putExtra("bitmap", bitmap);

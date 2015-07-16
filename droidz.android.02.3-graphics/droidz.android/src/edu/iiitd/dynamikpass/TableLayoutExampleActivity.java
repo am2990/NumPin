@@ -1,10 +1,14 @@
 package edu.iiitd.dynamikpass;
 
 
+import java.util.ArrayList;
+
 import edu.iiitd.dynamikpass.utils.DatabaseHelper;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore.Images;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,19 +26,24 @@ public class TableLayoutExampleActivity extends Activity implements OnItemSelect
 	private String item1,item2,item3;
 	String g1,g2,g3;
 	Button submit;
+	int imageBack;
+	ArrayList<Image> images = new ArrayList<Image>();
 	DatabaseHelper db = new DatabaseHelper(this);
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_1);
-       
-     spinner1 = (Spinner) findViewById(R.id.spinner1);
-     spinner2 = (Spinner) findViewById(R.id.spinner2);
-     spinner3 = (Spinner) findViewById(R.id.spinner3);
-     submit = (Button) findViewById(R.id.submit);
-     
-     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-    	        R.array.planets_array, android.R.layout.simple_spinner_item);
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.main_1);
+    	Intent i = getIntent();
+    	imageBack = i.getIntExtra("ib",0);
+
+
+    	spinner1 = (Spinner) findViewById(R.id.spinner1);
+    	spinner2 = (Spinner) findViewById(R.id.spinner2);
+    	spinner3 = (Spinner) findViewById(R.id.spinner3);
+    	submit = (Button) findViewById(R.id.submit);
+
+    	ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+    			R.array.planets_array, android.R.layout.simple_spinner_item);
     	// Specify the layout to use when the list of choices appears
     	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	// Apply the adapter to the spinner
@@ -50,14 +59,14 @@ public class TableLayoutExampleActivity extends Activity implements OnItemSelect
     	submit.setOnClickListener((OnClickListener) this);
     	//boolean check = spinner1.callOnClick();
     	spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-    	    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-    	       item1 = parent.getItemAtPosition(position).toString();
-    	        System.out.println("object1: "+item1);
-    	       // g1=item1;
-    	        db.saveMap(1,1,item1);
-    	    }
-    	    public void onNothingSelected(AdapterView<?> parent) {
-    	    }
+    		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    			item1 = parent.getItemAtPosition(position).toString();
+    			System.out.println("object1: "+item1);
+    			// g1=item1;
+    			db.saveMap(1,1,item1);
+    		}
+    		public void onNothingSelected(AdapterView<?> parent) {
+    		}
     	});	
     	spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
     	    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -108,6 +117,7 @@ public class TableLayoutExampleActivity extends Activity implements OnItemSelect
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+		intent.putExtra("ib", imageBack);
 		 startActivity(intent); 
 	}
     

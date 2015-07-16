@@ -1,5 +1,9 @@
 package edu.iiitd.dynamikpass;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +25,10 @@ public class RegistrationActivity extends Activity {
 	private static final int MENU_SUBMIT = 0;
 	private static final int MENU_VERIFY = 1;
 	private static final int MENU_CONFIRM = 2;
+	static ArrayList<String> images = new ArrayList<String>();
 	Intent i;
+	Map<String,String> map = new HashMap<>();  
+	static int imageBack;
 	
 	public ActionMode mActionMode;
 	@Override
@@ -65,17 +72,44 @@ public class RegistrationActivity extends Activity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		//Map<String, Integer> map = new HashMap<String, Integer>();
         super.onCreate(savedInstanceState);
         
         i = getIntent();
-        int imageBack = i.getIntExtra("ib",0);
+       imageBack = i.getIntExtra("ib",0);
         System.out.println("ib: : "+ Integer.toString(imageBack));
+        
+        images = i.getStringArrayListExtra("imageobjs");
+        
+       /* for(String img: images){
+        	System.out.println("images: "+img);
+        	img = img.substring(1, img.length()-1);           //remove curly brackets
+        	String[] keyValuePairs = img.split(",");   
+        	
+        	             
+
+        	for(String pair : keyValuePairs)                        //iterate over the pairs
+        	{
+        	    String[] entry = pair.split("=");                   //split the pairs to get key and value 
+        	 //   map.put(entry[0].trim(), entry[1].trim());          //add them to the hashmap and trim whitespaces
+        	    map.put(entry[0].trim(), entry[1].trim()); 
+        	    System.out.println("entry:"+ map);
+        	}
+        }*/
+     /*   for(int y=0;y<map.size();y++){
+        	System.out.println("map get elem:"+ map.get(y) );
+        }*/
+        
+       
+       // images.hashCode();
+        System.out.println("images size: "+images.size());
+        
         // requesting to turn the title OFF
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         // making it full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the View
-        setContentView(new RegistrationPanel(this, mActionModeCallback, imageBack));
+        setContentView(new RegistrationPanel(this, mActionModeCallback, imageBack,images));
         Log.d(TAG, "View added");
        
         
@@ -119,7 +153,7 @@ public class RegistrationActivity extends Activity {
 	   
 	    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 	    	System.out.println("get Item: "+item.getItemId());
-	    	if((RegistrationPanel.image.isLongTouched() == true)||(RegistrationPanel.tri_b.isLongTouched() == true)){
+	    	//if((RegistrationPanel.image.isLongTouched() == true)||(RegistrationPanel.tri_b.isLongTouched() == true)){
 	        switch (item.getItemId()) {
 	           
 	        case R.id.blue:
@@ -149,8 +183,8 @@ public class RegistrationActivity extends Activity {
                 	return false;
 	        }
 	    
-	    }
-			return false;
+	   // }
+			//return false;
 	   }
 	  
 		

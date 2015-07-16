@@ -5,6 +5,7 @@ package edu.iiitd.dynamikpass.model;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 import edu.iiitd.dynamikpass.R;
@@ -34,7 +35,7 @@ public class Image implements Serializable{
 	private int y;			// the Y coordinate
 	private boolean touched, longPressed;	// if droid is touched/picked up
 	private String col;
-	private Resources res;
+	private static Resources res;
 	private static final String TAG = "DroidObject";
 
 	public static int rad;
@@ -55,9 +56,25 @@ public class Image implements Serializable{
 		this.x = x;
 		this.y = y;
 		this.col = col;
-		this.res=res;
+		Image.res=res;
 
 	}
+	HashMap<String,Bitmap> color_to_bitmap = new HashMap<String, Bitmap>();
+	public Image(HashMap<String, Bitmap> bitmap, int bitmap_id, int x, int y, String col, Resources res){
+		
+		
+		
+		
+		this.bitmap_id = bitmap_id;
+		this.x = x;
+		this.y = y;
+		this.col = col;
+		this.bitmap = bitmap.get(col);
+		this.color_to_bitmap = bitmap;
+		Image.res=res;
+
+	}
+	
 	
 	
 	public Bitmap getBitmap() {
@@ -99,32 +116,32 @@ public class Image implements Serializable{
 		System.out.println("getColor: "+getBitmapId());
 		switch(getBitmapId()){
 		
-		case R.drawable.droid_1:
-			
-			 col = "dblue";
-			 break;
-		case R.drawable.droid_2:
-			 col = "dyellow";
-			 break;
-		case R.drawable.droid_3:
-			 col = "dred";
-			 break;
-		case R.drawable.droid_4:
-			 col = "dgreen";
-			 break;
-		case R.drawable.triangle_blue:
-			 col = "tblue";
-			 break;
-		case R.drawable.triangle_yellow:
-			 col = "tyellow";
-			 break;
-		case R.drawable.triangle_green:
-			 col = "tgreen";
-			 break;
-		case R.drawable.triangle_red:
-			 col = "tred";
-			 break;
-			 
+//		case R.drawable.droid_1:
+//			
+//			 col = "dblue";
+//			 break;
+//		case R.drawable.droid_2:
+//			 col = "dyellow";
+//			 break;
+//		case R.drawable.droid_3:
+//			 col = "dred";
+//			 break;
+//		case R.drawable.droid_4:
+//			 col = "dgreen";
+//			 break;
+//		case R.drawable.triangle_blue:
+//			 col = "tblue";
+//			 break;
+//		case R.drawable.triangle_yellow:
+//			 col = "tyellow";
+//			 break;
+//		case R.drawable.triangle_green:
+//			 col = "tgreen";
+//			 break;
+//		case R.drawable.triangle_red:
+//			 col = "tred";
+//			 break;
+//			 
 			
 		}
 		return col;
@@ -135,31 +152,53 @@ public class Image implements Serializable{
 		
 		switch(col){
 		
-		case "dblue":
-			setBitmapId( R.drawable.droid_1);
+//		case "dblue":
+//			setBitmapId( R.drawable.droid_1);
+//			break;
+//		case "dred":
+//			setBitmapId( R.drawable.droid_3);
+//			break;
+//		case "dyellow":
+//			setBitmapId( R.drawable.droid_2);
+//			break;
+//		case "dgreen":
+//			setBitmapId( R.drawable.droid_4);
+//			break;
+//		case "tblue":
+//			setBitmapId( R.drawable.triangle_blue);
+//			break;
+//		case "tred":
+//			setBitmapId( R.drawable.triangle_red);
+//			break;
+//		case "tyellow":
+//			setBitmapId( R.drawable.triangle_yellow);
+//			break;
+//		case "tgreen":
+//			setBitmapId( R.drawable.triangle_green);
+//			break;
+		case "YELLOW":
+//			setBitmapId( color_to_bitmap.get("YELLOW").getGenerationId());
+			setBitmap( color_to_bitmap.get("YELLOW"));
+			this.col = "YELLOW";
 			break;
-		case "dred":
-			setBitmapId( R.drawable.droid_3);
+
+		case "RED":
+//			setBitmapId( color_to_bitmap.get("RED").getGenerationId());
+			setBitmap( color_to_bitmap.get("RED"));
+			this.col = "RED";
 			break;
-		case "dyellow":
-			setBitmapId( R.drawable.droid_2);
+
+		case "GREEN":
+//			setBitmapId( color_to_bitmap.get("GREEN").getGenerationId());
+			setBitmap( color_to_bitmap.get("GREEN"));
+			this.col = "GREEN";
 			break;
-		case "dgreen":
-			setBitmapId( R.drawable.droid_4);
+
+		case "BLUE":
+//			setBitmapId( color_to_bitmap.get("BLUE").getGenerationId());
+			setBitmap( color_to_bitmap.get("BLUE"));
+			this.col = "BLUE";
 			break;
-		case "tblue":
-			setBitmapId( R.drawable.triangle_blue);
-			break;
-		case "tred":
-			setBitmapId( R.drawable.triangle_red);
-			break;
-		case "tyellow":
-			setBitmapId( R.drawable.triangle_yellow);
-			break;
-		case "tgreen":
-			setBitmapId( R.drawable.triangle_green);
-			break;
-			
 		}
 		
 	}
@@ -246,9 +285,9 @@ public class Image implements Serializable{
 		
 		canvas.drawBitmap(bitmap, x - (bitmap.getWidth() / 2), y - (bitmap.getHeight() / 2), null);
 		if(host = true){
-		Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(getX(), getY(), rad, paint);
+			Paint paint = new Paint();
+			paint.setStyle(Paint.Style.STROKE);
+			canvas.drawCircle(getX(), getY(), rad, paint);
         
         
 		}

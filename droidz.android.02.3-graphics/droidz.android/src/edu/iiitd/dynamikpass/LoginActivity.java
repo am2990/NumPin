@@ -31,8 +31,9 @@ public class LoginActivity extends Activity {
 	private static final String TAG = RegistrationActivity.class.getSimpleName();
 	public static Object ax;
 	public static Object ay;
+	Intent i;
 	
-	
+	ArrayList<String> images = new ArrayList<String>();
 	
 	
 	
@@ -73,6 +74,10 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        i = getIntent();
+        int imageBack = i.getIntExtra("ib",0);
+        System.out.println("ib lp: "+imageBack);
+       // images = i.getStringArrayListExtra("images");
       /* @SuppressWarnings("unchecked")
 		ArrayList<Double> ax = (ArrayList<Double>) getIntent().getSerializableExtra("ax");
         @SuppressWarnings("unchecked")
@@ -86,7 +91,7 @@ public class LoginActivity extends Activity {
         // making it full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the View
-        setContentView(new LoginPanel(this));
+        setContentView(new LoginPanel(this,imageBack));
         Log.d(TAG, "View added");
         
   	
