@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="6"
+            android:gravity="center"
+            android:text="Select Gesture"
+            android:textSize="18dp"
+            android:textStyle="bold" >
+        </TextView>
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+	
+
+        <TextView
+            android:id="@+id/TextView21"
+            android:gravity="center"
+            android:text="Position"
+            android:textStyle="bold"
+            android:typeface="serif" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/TextView22"
+            android:gravity="center"
+            android:text="Color"
+            android:textStyle="bold"
+            android:typeface="serif" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/TextView23"
+            android:gravity="center"
+            android:text="Gesture"
+            android:textStyle="bold"
+            android:typeface="serif" >
+        </TextView>
+
+       
+    </TableRow>
+    
+     <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        
+
+        <ImageView
+            android:id="@+id/imageView31"
+            android:src="@drawable/right" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/imageView32"
+            android:src="@drawable/right" >
+        </ImageView>
+        <Spinner
+    android:id="@+id/spinner1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="14pt" />
+
+        
+    </TableRow>
+      <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        
+
+        <ImageView
+            android:id="@+id/imageView41"
+            android:src="@drawable/right" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/imageView42"
+            android:src="@drawable/wrong" >
+        </ImageView>
+        <Spinner
+    android:id="@+id/spinner2"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="14pt" />
+
+        
+    </TableRow>
+      <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        
+
+        <ImageView
+            android:id="@+id/imageView51"
+            android:src="@drawable/wrong" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/imageView52"
+            android:src="@drawable/right" >
+        </ImageView>
+        <Spinner
+    android:id="@+id/spinner3"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="14pt" />
+
+        
+    </TableRow>
+    
+      
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                
+                android:onClick="onClick"
+                android:text="@string/submit" />
+    </TableLayout>

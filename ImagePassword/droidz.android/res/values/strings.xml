@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, GalleryView!</string>
+    <string name="app_name">ImagePass</string>
+    <string name="button_text">Set as Background</string>
+     <string name="menu_setBack">Set as Background</string>
+     <string name="menu_selectimage">Select Images</string>
+     <string name="menu_submit">Submit</string>
+     <string name="menu_verify">Verify</string>
+     <string name="menu_confirm">Confirm</string>
+     <string name="str_red">Red</string>
+    <string name="str_green">Green</string>
+    <string name="str_yellow">Yellow</string>
+    <string name="str_blue">Blue</string>
+     <string name="submit">Submit</string>
+    <string-array name="planets_array">
+        <item>Single Tap</item>
+        <item>Double Tap</item>
+        <item>Fling</item>
+       
+    </string-array>
+     <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">GridView Demo</string>
+      <drawable name="red">#7f00</drawable>
+    <drawable name="blue">#770000ff</drawable>
+    <drawable name="green">#7700ff00</drawable>
+    <drawable name="yellow">#77ffff00</drawable>
+    <drawable name="screen_background_black">#ff000000</drawable>
+    <drawable name="translucent_background">#e0000000</drawable>
+    <drawable name="transparent_background">#00000000</drawable>
+
+    <color name="solid_red">#f00</color>
+    <color name="solid_blue">#0000ff</color>
+    <color name="solid_green">#f0f0</color>
+    <color name="solid_yellow">#ffffff00</color>
+     
+</resources>
